@@ -1,0 +1,84 @@
+﻿@model SchoolManagementSystem.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCredits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseCredits)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<h3>
+    Students Enrolled in @Html.DisplayFor(model => model.CourseTitle)
+</h3>
+<table class="table">
+    <tr>
+        <th>Student Name</th>
+        <th>Enrollement Date</th>
+        <th>Address</th>
+    </tr>
+    @foreach (var students in Model.Enrollments)
+    {
+        <tr>
+            <td>
+                <p>
+                    @students.Student.StudentName
+                </p>
+            </td>
+            <td>
+                <p>
+                    @students.Student.EnrollmentDate
+                </p>
+            </td>
+            <td>
+                <p>
+                    @students.Student.Address
+                </p>
+            </td>
+        </tr>
+    }
+</table>
+<h3>
+    Staff assigned to @Html.DisplayFor(model => model.CourseTitle)
+</h3>
+<table class="table">
+    <tr>
+        <th>Staff Name</th>
+
+    </tr>
+    @foreach (var staff in Model.Enrollments)
+    {
+        <tr>
+            <td>
+                <p>
+                    @staff.Staff.StaffName
+                </p>
+            </td>
+        </tr>
+    }
+</table>
